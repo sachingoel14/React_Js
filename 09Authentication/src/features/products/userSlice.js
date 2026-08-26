@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: null,
-  token: null,
-  isLoggedIn: false,
+  user: JSON.parse(localStorage.getItem("user")) || null,
+  token: localStorage.getItem("token") || null,
+  isLoggedIn: !!localStorage.getItem("token"),
 };
 
 const userSlice = createSlice({
@@ -21,6 +21,9 @@ const userSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isLoggedIn = false;
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
 });

@@ -30,6 +30,8 @@ function Login() {
       }).unwrap();
 
       console.log("API Response:", data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data));
     
       dispatch(
         setCredentials({
